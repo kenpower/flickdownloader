@@ -30,11 +30,11 @@ namespace Coding4Fun_1
             // Example 2
             PhotoSearchOptions searchOptions = new PhotoSearchOptions();
             searchOptions.UserId = "70831453@N00";
-            searchOptions.Tags = "kanas";
+            //searchOptions.Tags = "kanas";
             searchOptions.PerPage = 500;
-            //PhotoCollection microsoftPhotos = flickr.PhotosSearch(searchOptions);
-            //PhotosetPhotoCollection myset = flickr.PhotosetsGetPhotos("72157594398087814");
-            PhotoCollection myset = flickr.PhotosSearch(searchOptions);
+            PhotoCollection microsoftPhotos = flickr.PhotosSearch(searchOptions);
+            PhotosetPhotoCollection myset = flickr.PhotosetsGetPhotos("72157636689533194");
+            //PhotoCollection myset = flickr.PhotosSearch(searchOptions);
             //Photoset myset = flickr.PhotosetsGetInfo("72157594398087814");
             
 
@@ -59,15 +59,20 @@ namespace Coding4Fun_1
                 OutputTextbox.Text += "Photos title is " + photo.Title + " " + photo.ThumbnailUrl+ "\r\n";
 
                 if (photo.DoesLargeExist){
-                    webClient.DownloadFile(photo.LargeUrl, s + @"\temp\" + photo.PhotoId +searchOptions.Tags+ @".jpg");
+                    webClient.DownloadFile(photo.LargeUrl, s + @"\ssr\" + photo.PhotoId +searchOptions.Tags+ @".jpg");
                 }
                 else if(photo.DoesMediumExist){
-                    webClient.DownloadFile(photo.MediumUrl, s+@"\temp\"+photo.PhotoId+searchOptions.Tags+@".jpg");
+                    webClient.DownloadFile(photo.MediumUrl, s+@"\ssr\"+photo.PhotoId+searchOptions.Tags+@".jpg");
 
                 }
+                //else if (photo.OriginalUrl)
+                //{
+                    //webClient.DownloadFile(photo.MediumUrl, s + @"\temp\" + photo.PhotoId + searchOptions.Tags + @".jpg");
+
+                //}
                 else
                 {
-                    webClient.DownloadFile(photo.SmallUrl , s + @"\temp\" + photo.PhotoId + searchOptions.Tags+@".jpg");
+                    webClient.DownloadFile(photo.Medium640Url , s + @"\ssr\" + photo.PhotoId + searchOptions.Tags+@".jpg");
 
                 }
               
